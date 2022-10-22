@@ -1,0 +1,45 @@
+# 1
+string  = "123"
+num_1 = int(string)
+print(num_1)
+
+# 2
+num_2  = 123
+fl = float(num_2)
+print(fl)
+
+# 3
+num_3 = int(12.345)
+print(num_3)
+
+# 4
+
+credit_card_num = 5555123456784321
+last_4_digits = credit_card_num % 10000
+print(last_4_digits)
+
+# 5
+num_5 = int(input("введіть тризначне число: "))
+n1 = num_5 // 100
+n2 = (num_5 - n1 * 100) // 10
+n3 = num_5 - n1 * 100 - n2 * 10
+print(f"Сума цифр = {n1 + n2 + n3}")
+
+# 6
+a, b , c = int(input("введіть довжину сторони: ")), int(input("введіть довжину сторони: ")), int(input("введіть довжину сторони: "))
+p = (a + b + c) * 0.5
+S = (p * (p - a) * (p - b) * (p - c)) ** 0.5
+print(S)
+
+# 7
+num_7 = input("введіть число для визначення суми цифр: ")
+sum = 0
+for i in range(len(num_7)):
+    sum += int(num_7[i])
+print(sum)
+
+# 8
+print(len(input("введіть число для визначення його довжини: ")))
+
+# 9
+print(input("введіть число для виведення його в зворотньому порядку: ")[::-1])
