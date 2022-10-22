@@ -1,0 +1,25 @@
+# 1
+print("Hello world")
+
+# 2
+print("I'm not a genius")
+print("Any messages")
+print("Hello, Prog Academy")
+
+# 3
+a, b  = int(input("length: ")), int(input("width: "))
+print(a * b)
+
+# 4
+num_1, num_2  = int(input("введіть будь-яке число: ")), int(input("введіть будь-яке число: "))
+print(num_1 + num_2)
+print(num_1 * num_2)
+print(num_1 - num_2)
+print(num_1 / num_2)
+
+# 5
+from math import *
+r  = int(input("введіть радіус: "))
+print(r * 2)
+print(r * 2 * pi)
+print(pi * r **2)
