@@ -13,7 +13,6 @@ num_3 = int(12.345)
 print(num_3)
 
 # 4
-
 credit_card_num = 5555123456784321
 last_4_digits = credit_card_num % 10000
 print(last_4_digits)
