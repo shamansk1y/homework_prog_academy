@@ -1,20 +1,23 @@
 # 1. Є дев'ятиповерховий будинок, в якому 4 під'їзди. Номер під'їзду починається з одиниці. На одному поверсі - 4 квартири.
 # Напишіть програму, яка від користувача отримує номер квартири та виводить для заданої квартири номер під'їзду, поверху та номер на поверсі.
 # Якщо такої квартира немає в цьому будинку, то необхідно повідомити користувача про це.
+
 flat_num = int(input("Enter number flat: "))
-if flat_num > 144:
-    print("incorrect flat number")
-else:
-    entrance = (flat_num - 1) // 36 + 1
-    floor = ((flat_num - 1) // 4 + 1) - 9 * (entrance - 1)
-    flat_num_on_fl = flat_num - (((flat_num - 1) // 4)) * 4
-    print(f'Entrance number: {entrance}, Floor number: {floor}, Floor apartment number: {flat_num_on_fl}')
+entrance = (flat_num - 1) // 36 + 1
+floor = ((flat_num - 1) // 4 + 1) - 9 * (entrance - 1)
+flat_num_on_fl = flat_num - (((flat_num - 1) // 4)) * 4
+res = flat_num > 144 or print(f'Entrance number: {entrance}, Floor number: {floor}, Floor apartment number: {flat_num_on_fl}')
+res2 = flat_num <= 144 or print("incorrect flat number")
+res and res2
 
 
 # 2. Написати програму, яка буде повертати для заданого року кількість днів. Рік є високосним, якщо він кратний 4, але не кратний 100, а також якщо він кратний 400.
+
 a = int(input())
 print('366' if a % 4 == 0 and a % 100 != 0 or a % 400 == 0 else '365')
 
+
 # 3. Трикутник існує лише тоді, коли сума будь-яких двох сторін більше третьої. Дано: A, B, C - сторони трикутника. Напишіть програму, яка вказує чи існує такий трикутник.
+
 a, b, c = int(input()), int(input()), int(input())
 print("YES" if a < (b + c) and b < (a + c) and c < (b + a) else "NO")
