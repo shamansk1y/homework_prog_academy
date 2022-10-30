@@ -22,5 +22,5 @@ print("Palindron" if num == num[::-1] else "Not palindrom")
 x2, y2 = float(input("enter x: ")), float(input("enter y: "))
 x1, y1 = 0, 0
 r = 4
-print("dot in/on a circle" if r >= ((x2-x1)**2 + (y2-y1)**2)**0.5 else "point outside the circle")
+print("point in/on a circle" if r >= ((x2-x1)**2 + (y2-y1)**2)**0.5 else "point outside the circle")
 
