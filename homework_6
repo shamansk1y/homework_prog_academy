@@ -89,3 +89,50 @@ print(*matrix, sep="\n")
 print(result)
 
 
+# 9. Написати код для дзеркального перевороту списку [7,2,9,4] -> [4,9,2,7].
+# Список може бути довільною довжиною.
+
+from random import randint
+AMOUNT_EL = 4
+MIN_EL = 1
+MAX_EL = 100
+lst = [randint(MIN_EL, MAX_EL) for i in range(AMOUNT_EL)]
+print(lst)
+lst.reverse()
+print(lst)
+
+
+# 10. За допомогою циклів вивести на екран усі прості числа від 1 до 100.
+
+for i in range(2,101):
+    if i == 2:
+        print(i)
+    elif i == 1:
+        continue
+    else:
+        for j in range(2,i):
+            if not i % j:
+                break
+        else:
+            print(i)
+  
+  # 11. Виведіть на екран «пісочний годинник», максимальна ширина якого зчитується з клавіатури (число непарне). 
+# У прикладі ширина дорівнює 5.
+# *****
+# ***
+#   *
+#  ***
+# *****
+
+num = int(input("Enter unpaired number: "))
+if not num % 2:
+    print("Enter unpaired number")
+else:
+    for i in range(int((num+1)/2)):
+        print(" " * i + "*" * (num - i * 2) + " " * i )
+    for i in range(int((num-1)/2)):
+        print(" " * (int((num-2)/2) - i) + "*" * (3 + i * 2) + " " * (int((num-2)/2) - i) ) 
+
+  
+            
+         
