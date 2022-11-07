@@ -129,9 +129,9 @@ if not num % 2:
     print("Enter unpaired number")
 else:
     for i in range(int((num+1)/2)):
-        print(" " * i + "*" * (num - i * 2) + " " * i )
+        print(" " * i + "*" * (num - i * 2))
     for i in range(int((num-1)/2)):
-        print(" " * (int((num-2)/2) - i) + "*" * (3 + i * 2) + " " * (int((num-2)/2) - i) ) 
+        print(" " * (int((num-2)/2) - i) + "*" * (3 + i * 2)) 
 
   
             
