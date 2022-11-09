@@ -45,16 +45,39 @@ print(max(input("Enter text: ").split(), key=len))
 # ititititit - Вовочка писав слово - "it"
 # catcatcatcat - Вовочка писав слово - "cat"
 
-from string import ascii_letters
-counter = 0
-text = input("Enter text: ")
-for i in ascii_letters:
-    if i in text:
-        counter += 1
-print(text[:counter])
+word = input('Vovocha wrote: ')
+lst = []
+lst_reverse = []
+i = 0
+j = 0
 
-
-
+if word[0] != word[-1] or word[0] != word[1]:
+    if word != word[::-1]:
+        lst.append(word[i])
+        lst_reverse.append(word[-1])
+        i += 1
+        j -= 2
+        while lst != lst_reverse:
+            lst.append(word[i])
+            lst_reverse.insert(0,word[j])
+            i += 1
+            j -= 1
+        print(*lst, sep="")
+    else:
+        lst.append(word[i-1])
+        lst.append(word[i-2])
+        lst_reverse.append(word[-2])
+        lst_reverse.append(word[-1])
+        i += 2
+        j -= 3
+        while lst != lst_reverse:
+            lst.append(word[i])
+            lst_reverse.insert(0,word[j])
+            i += 1
+            j -= 1
+        print(*lst, sep="")
+else:
+    print(word[0])
 
 
 
