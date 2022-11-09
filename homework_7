@@ -48,15 +48,12 @@ print(max(input("Enter text: ").split(), key=len))
 word = input('Vovocha wrote: ')
 lst = []
 lst_reverse = []
-i = 0
-j = 0
-
 if word[0] != word[-1] or word[0] != word[1]:
     if word != word[::-1]:
-        lst.append(word[i])
+        lst.append(word[0])
         lst_reverse.append(word[-1])
-        i += 1
-        j -= 2
+        i = 1
+        j = -2
         while lst != lst_reverse:
             lst.append(word[i])
             lst_reverse.insert(0,word[j])
@@ -64,12 +61,12 @@ if word[0] != word[-1] or word[0] != word[1]:
             j -= 1
         print(*lst, sep="")
     else:
-        lst.append(word[i-1])
-        lst.append(word[i-2])
+        lst.append(word[0])
+        lst.append(word[1])
         lst_reverse.append(word[-2])
         lst_reverse.append(word[-1])
-        i += 2
-        j -= 3
+        i = 2
+        j = -3
         while lst != lst_reverse:
             lst.append(word[i])
             lst_reverse.insert(0,word[j])
