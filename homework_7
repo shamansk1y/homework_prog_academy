@@ -22,8 +22,7 @@ print(sum([ord(i) for i in input("Enter text: ")]))
 # 4. Виведіть на екран 10 рядків із значенням числа Pi. У першому рядку має бути 2 знаки після коми, у другому 3 і так далі.
 
 from math import pi
-temp = [round(pi,i) for i in range(2,11)]
-print(*temp, sep="\n")
+print(*([round(pi,i) for i in range(2,11)]), sep="\n")
 
 
 
