@@ -15,11 +15,7 @@ print(all([name.isalpha(), name[0].upper() == name[0], name[1:].lower() == name[
 
 # 3. Напишіть програму, яка обчислить суму всіх кодів символів рядка.
 
-text = input("Enter text: ")
-count = 0
-for i in text:
-    count += ord(i)
-print(count)
+print(sum([ord(i) for i in input("Enter text: ")]))
 
 
 
