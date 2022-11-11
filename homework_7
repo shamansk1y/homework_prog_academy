@@ -46,7 +46,7 @@ print(max(input("Enter text: ").split(), key=len))
 # catcatcatcat - Вовочка писав слово - "cat"
 
 word = input('Vovocha wrote: ')
-if word[0] == word[1] == word[2]:
+if word[0] == word[1] == word[-1]:
     print(word[0])
 else:
     i = 2
