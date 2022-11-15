@@ -42,7 +42,7 @@ print(search_3(2,[3,5,8,2,13,12,0]))
 # 4. Напишіть функцію, яка поверне кількість слів у текстовому рядку.
 
 def word_count(txt):
-    return len(txt.split(" "))
+    return f'Word count: {len(txt.split(" "))}'
 print(word_count("adasd, asdasd, asdasd. sad as asdad adsadas"))
 
 
@@ -121,9 +121,26 @@ def dollar_convert(n):
         return f'{num} dollars {ce} cents'
     else:
         return "Invalid input format"
-n = input().split(',')
+n = input('Enter number in format xxxxxx,xx: ').split(',')
 print(dollar_convert(n))
 
 
 
 
+# 6. Напишіть функцію, яка переводить ціле число з римського запису до десяткового.
+# Наприклад: XXII -> 22
+# Докладніше: https://en.wikipedia.org/wiki/Roman_numerals
+
+def roman_2_arabic_convert(num_input):
+    roman_numerals = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+    last = num_input[-1]
+    res = roman_numerals[last]
+    for i in num_input[-2::-1]:
+        if roman_numerals[i] >= roman_numerals[last]:
+            res += roman_numerals[i]
+        else:
+            res -= roman_numerals[i]
+        prev = i
+    return f'Arabic number: {res}'
+num_input = input('Enter Roman numeral: ')
+print(roman_2_arabic_convert(num_input))
