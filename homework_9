@@ -97,7 +97,9 @@ def dollar_convert(n):
         elif dol[1] == '0' and dol[2] != '0':
             num += dict_5[dol[2]] + ' thousand '
         elif dol[1] != '0' and dol[2] == '0':
-            num += dict_5[dol[1] + '0'] + ' thousand '    
+            num += dict_5[dol[1] + '0'] + ' thousand '
+        else:
+            num  + ' thousand '
         # сотні
         if dol[3] != '0':
             num += dict_5[dol[3]] + ' hundred '
@@ -110,8 +112,8 @@ def dollar_convert(n):
         elif dol[4] != '0' and dol[5] == '0':
             num += dict_5[dol[4] + '0']
         # центи    
-        if cent[1] == '1':
-            ce += dict_5[cent[1]]
+        if cent[0] == '1':
+            ce += dict_5[cent[0]]
         elif cent[0] != '0' and cent[1] != '0':
             ce += dict_5[cent[0] + '0'] + '-' + dict_5[cent[1]]
         elif cent[0] == '0' and cent[1] != '0':
@@ -123,6 +125,7 @@ def dollar_convert(n):
         return "Invalid input format"
 n = input('Enter number in format xxxxxx,xx: ').split(',')
 print(dollar_convert(n))
+
 
 
 
