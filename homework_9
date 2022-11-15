@@ -1,0 +1,129 @@
+# 1. Реалізуйте функцію, параметрами якої є два числа та рядок. Повертає вона конкатенацію рядка із сумою чисел.
+
+def func_1(a, b, c):
+    if type(a) == int and type(b) == int and type(c) == str:
+        return c + str(a + b)
+    elif type(a) == int and type(c) == int and type(b) == str:
+        return b + str(a + c)
+    elif type(c) == int and type(c) == int and type(a) == str:
+        return a + str(b + c)
+    else:
+        return "Error"
+print(func_1(8, 3, "sats"))
+
+
+
+# 2. Реалізуйте функцію, яка малює на екрані прямокутник із зірочок «*».
+# Її параметрами будуть цілі числа, які описують довжину та ширину такого прямокутника.
+
+def rectangle_2(width, height):
+    res = f'{"*" * width}\n' + f'{("*" + " " * (width - 2) + "*")}\n' * (height-2) + f'{"*" * width}\n'
+    return res
+print(rectangle_2(2,4))
+
+
+
+# 3. Напишіть функцію, яка реалізує лінійний пошук елемента у списку цілих чисел.
+# Якщо такий елемент у списку є, то поверніть індекс, якщо ні, то поверніть число «-1».
+
+def search_3(elem, lst):
+    i = 0
+    while i < len(lst):
+        if lst[i] == elem:
+            return i
+            break
+        i += 1
+    else:
+        return "-1"
+print(search_3(2,[3,5,8,2,13,12,0]))
+
+
+
+# 4. Напишіть функцію, яка поверне кількість слів у текстовому рядку.
+
+def word_count(txt):
+    return len(txt.split(" "))
+print(word_count("adasd, asdasd, asdasd. sad as asdad adsadas"))
+
+
+
+# 5. Напишіть функцію, яка переводить число, що означає кількість доларів і центів, в прописний формат. Наприклад:
+# > 123,34
+# > one hundred twenty three dollars thirty four cents
+
+def dollar_convert(n):
+    dict_5 = {'1': 'one',
+            '2': 'two',
+            '3': 'three',
+            '4': 'four',
+            '6': 'six',
+            '5': 'five',
+            '7': 'seven',
+            '8': 'eight',
+            '9': 'nine',
+            '10': 'ten',
+            '11': 'eleven',
+            '12': 'twelve',
+            '13': 'thirteen',
+            '14': 'fourteen',
+            '15': 'fifteen',
+            '16': 'sixteen',
+            '17': 'seventeen',
+            '18': 'eighteen',
+            '19': 'nineteen',
+            '20': 'twenty',
+            '30': 'thirty',
+            '40': 'forty',
+            '50': 'fifty',
+            '60': 'sixty',
+            '70': 'seventy',
+            '80': 'eighty',
+            '90': 'ninety'}
+    num = ''
+    ce = ''
+
+    if int(n[0]) <= 999999 and int(n[1]) <= 99:
+        dol = n[0]
+        cent = n[1]
+        while len(dol) < 6:
+            dol = '0' + dol
+        # сотні тисяч 
+        if dol[0] != '0':
+            num += dict_5[dol[0]] + ' hundred '
+        if dol[1] == '1':
+            num += dict_5[dol[1]+dol[2]]  + ' thousand '
+        elif dol[1] != '0' and dol[2] != '0':
+            num += dict_5[dol[1] + '0'] + '-' + dict_5[dol[2]] + ' thousand '
+        elif dol[1] == '0' and dol[2] != '0':
+            num += dict_5[dol[2]] + ' thousand '
+        elif dol[1] != '0' and dol[2] == '0':
+            num += dict_5[dol[1] + '0'] + ' thousand '    
+        # сотні
+        if dol[3] != '0':
+            num += dict_5[dol[3]] + ' hundred '
+        if dol[4] == '1':
+            num += dict_5[dol[4]+dol[5]]
+        elif dol[4] != '0' and dol[5] != '0':
+            num += dict_5[dol[4] + '0'] + '-' + dict_5[dol[5]]
+        elif dol[4] == '0' and dol[5] != '0':
+            num += dict_5[dol[5]]
+        elif dol[4] != '0' and dol[5] == '0':
+            num += dict_5[dol[4] + '0']
+        # центи    
+        if cent[1] == '1':
+            ce += dict_5[cent[1]]
+        elif cent[0] != '0' and cent[1] != '0':
+            ce += dict_5[cent[0] + '0'] + '-' + dict_5[cent[1]]
+        elif cent[0] == '0' and cent[1] != '0':
+            ce += dict_5[cent[1]]
+        elif cent[0] != '0' and cent[1] == '0':
+            ce += dict_5[cent[0] + '0']
+        return f'{num} dollars {ce} cents'
+    else:
+        return "Invalid input format"
+n = input().split(',')
+print(dollar_convert(n))
+
+
+
+
