@@ -140,7 +140,7 @@ def roman_2_arabic_convert(num_input):
             res += roman_numerals[i]
         else:
             res -= roman_numerals[i]
-        prev = i
+        last = i
     return res
 num_input = input('Enter Roman numeral: ')
 print(roman_2_arabic_convert(num_input))
