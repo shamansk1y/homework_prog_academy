@@ -1,15 +1,14 @@
 # 1. Реалізуйте функцію, параметрами якої є два числа та рядок. Повертає вона конкатенацію рядка із сумою чисел.
 
 def func_1(a, b, c):
-    if type(a) == int and type(b) == int and type(c) == str:
+    if isinstance(a, int) and isinstance(b, int) and isinstance(c, str):
         return c + str(a + b)
-    elif type(a) == int and type(c) == int and type(b) == str:
+    elif isinstance(a, int) and isinstance(c, int) and isinstance(b, str):
         return b + str(a + c)
-    elif type(c) == int and type(c) == int and type(a) == str:
+    elif isinstance(b, int) and isinstance(c, int) and isinstance(a, str):
         return a + str(b + c)
-    else:
-        return "Error"
-print(func_1(8, 3, "sats"))
+ 
+print(func_1(8, 3, "test"))
 
 
 
@@ -31,18 +30,16 @@ def search_3(elem, lst):
     while i < len(lst):
         if lst[i] == elem:
             return i
-            break
         i += 1
-    else:
-        return "-1"
-print(search_3(2,[3,5,8,2,13,12,0]))
+    return -1
+print(search_3(2,[3,5,8,1,13,12,0]))
 
 
 
 # 4. Напишіть функцію, яка поверне кількість слів у текстовому рядку.
 
 def word_count(txt):
-    return f'Word count: {len(txt.split(" "))}'
+    return len(txt.split(" "))
 print(word_count("adasd, asdasd, asdasd. sad as asdad adsadas"))
 
 
@@ -144,6 +141,6 @@ def roman_2_arabic_convert(num_input):
         else:
             res -= roman_numerals[i]
         prev = i
-    return f'Arabic number: {res}'
+    return res
 num_input = input('Enter Roman numeral: ')
 print(roman_2_arabic_convert(num_input))
