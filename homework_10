@@ -11,27 +11,56 @@
 
 from math import log
 
-def search_type(seq):
-    if seq[0] - seq[1] == seq[1] - seq[2] == seq[2] - seq[3]:
-        return seq_plus(seq)
-    elif seq[3] / seq[2] == seq[2] / seq[1] == seq[1] / seq[0]:
-        return seq_multiply(seq)
-    elif int(log(seq[1])/log(2)) == int(log(seq[2])/log(3)):
-        return seq_exponentiate(seq)
+def search_sequence_pattern_1(seq):
+    """ sequence '+x' """
+    temp = seq[1] - seq[0]
+    for i in range(2,len(seq)):        
+        if seq[i] - seq[i-1] == temp and i == len(seq)-1:
+            return seq_plus(seq)
+        elif seq[i] - seq[i-1] == temp:
+            continue
+        else:
+            return search_sequence_pattern_2(seq)
+        
+def search_sequence_pattern_2(seq):
+    """ sequence '*x' """
+    temp = seq[1] / seq[0]
+    if seq[0]:
+        for i in range(2,len(seq)):            
+            if seq[i] / seq[i-1] == temp and i == len(seq)-1:
+                return seq_multiply(seq)
+            elif seq[i] / seq[i-1] == temp:
+                continue            
+            else:
+                return search_sequence_pattern_3(seq)
     else:
         return -1
+
+def search_sequence_pattern_3(seq):
+    """ sequence '**x' """
+    temp = log(seq[1])/log(2)
+    if len(seq) > 4 and 1 not in seq[1:]:
+        for i in range(2,len(seq)):            
+            if log(seq[i-1])/log(i) == temp and i == len(seq)-1:
+                return seq_exponentiate(seq)
+            elif log(seq[i-1])/log(i) == temp:
+                continue            
+            else:
+                return -1
+    else:
+        return -1    
     
 def seq_plus(seq):
-    return seq[-1]+seq[1]-seq[0]
+    return seq[-1] + seq[1] - seq[0]
 
 def seq_multiply(seq):
     return seq[-1] * int(seq[1]/seq[0])
 
 def seq_exponentiate(seq):
-    return (len(seq) + 1)**int(log(seq[1])/log(2))
+    return (len(seq) + 1) ** int(log(seq[1]) / log(2))
 
 seq = list(map(int,((input()).split(","))))
-print(search_type(seq))
+print(search_sequence_pattern_1(seq))
 
 
 
@@ -40,15 +69,16 @@ print(search_type(seq))
 # Знайдіть найбільший паліндром, одержаний множенням двох трицифрових чисел.
 # Виведіть значення цього паліндрому і те, vyj;tyyzv яких чисел він є.
 
-max_pal = 0
-a = 0
-b = 0
-for i in range(999, 100, -1):
-    for j in range(999, 100, -1):
-        temp = str(i * j)
-        if temp == temp[::-1] and max_pal < (i * j):
-            max_pal = i * j
-            a = i
-            b = j
-
-print(f"{a} * {b} = {max_pal}")
+def func(mn, mx):
+    max_pal = 0
+    a = 0
+    b = 0
+    for i in range(mx, mn, -1):
+        for j in range(mx, mn, -1):
+            temp = i * j
+            if str(temp) == str(temp)[::-1] and max_pal < temp:
+                max_pal = i * j
+                a = i
+                b = j
+    return (f"{max_pal} = {a} * {b}")
+print(func(100,999))
