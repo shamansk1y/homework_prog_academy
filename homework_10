@@ -23,9 +23,9 @@ def search_sequence_pattern_1(seq):
             return search_sequence_pattern_2(seq)
         
 def search_sequence_pattern_2(seq):
-    """ sequence '*x' """
-    temp = seq[1] / seq[0]
+    """ sequence '*x' """  
     if seq[0]:
+        temp = seq[1] / seq[0]
         for i in range(2,len(seq)):            
             if seq[i] / seq[i-1] == temp and i == len(seq)-1:
                 return seq_multiply(seq)
