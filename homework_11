@@ -1,0 +1,71 @@
+# Домашнє завдання:
+# 1. Створіть клас для опису товару. У якості атрибутів товару можете використовувати значення ціни товару, опису товару, габарити товару.
+# Створіть пару екземплярів вашого класу та протестуйте їхню роботу.
+# 2. Створіть клас "Покупець". У якості атрибутів можна використовувати прізвище, ім'я, по батькові, мобільний телефон тощо.
+# 3. Створіть клас "Замовлення". Замовлення може містити декілька товарів певної кількості.
+# Замовлення має містити дані про користувача, який його здійснив. Реалізуйте метод обчислення сумарної вартості замовлення.
+# Визначте метод str() для коректного виведення інформації про це замовлення.
+
+
+class Product():
+    def __init__(self, product_name, price, description, vendor_code, size, brand, producing_country):
+        self.product_name = product_name
+        self.price = price
+        self.description = description
+        self.vendor_code = vendor_code
+        self.size = size
+        self.brand = brand
+        self.producing_country = producing_country
+        
+    def __str__(self):
+        return f'{self.brand} {self.product_name} - {self.vendor_code} === {self.price}.00 UAH'
+
+    
+class Buyer():
+    def __init__(self, surname, name, phone, email):
+        self.surname = surname
+        self.name = name
+        self.phone = phone
+        self.email = email
+        
+    def __str__(self):
+        return f'{self.surname} {self.name[0]}. {self.phone} {self.email}'
+
+    
+class Order():
+    def __init__(self, order_numder, buyer):
+        self.order_numder = order_numder
+        self.buyer = buyer
+        self.total_order = []
+        self.total_price = []
+    
+    def add_product(self, product):
+        self.total_order.append(product)
+        self.total_price.append(product.price)
+        
+    def __str__(self):
+        return f"{self.order_numder}\nby {self.buyer}\n{'-' * 50}\n" + '\n'.join(map(str, self.total_order)) + '\n' +\
+    'Total price: ' + f'{sum(map(int, self.total_price))}.00' + " UAH" + '\n'
+                    
+        
+if __name__ == '__main__':
+    product_1 = Product('Top Flex', 1750, "Futsal shoes", "TOPS2022IN", "43", "Joma", "Spain")
+    product_2 = Product('Tornado', 1450, "Official match ball", "2214008", "4", "Select", "Denmark")
+    product_3 = Product('T-shirt Ucrania UAF', 1350, "Official match t-shirt", "AT102404A709", "Medium", "Joma", "Spain")
+    product_4 = Product('Estadio III', 650, "Training bag", "400234.100", "ONESIZE", "Joma", "Spain")
+    
+    buyer_1 = Buyer("John", "Doe", "+38-096-111-11-11", "john_doe@gmail.com")
+    buyer_2 = Buyer("Jane", "Doe", "+38-096-222-22-22", "jane_doe@gmail.com")
+            
+    order_0001 = Order("Order №0001", buyer_1)
+    order_0001.add_product(product_1)
+    order_0001.add_product(product_2)
+    order_0001.add_product(product_3)
+    print(order_0001)
+    
+    order_0002 = Order("Order №0002", buyer_2)
+    order_0002.add_product(product_4)
+    order_0002.add_product(product_2)
+    order_0002.add_product(product_1)
+    print(order_0002)    
+
