@@ -37,15 +37,17 @@ class Order():
         self.order_numder = order_numder
         self.buyer = buyer
         self.total_order = []
-        self.total_price = []
     
     def add_product(self, product):
         self.total_order.append(product)
-        self.total_price.append(product.price)
-        
+
+    def total(self):
+        return sum(i.price for i in self.total_order)  
+    
+        print(product.price)
     def __str__(self):
         return f"{self.order_numder}\nby {self.buyer}\n{'-' * 50}\n" + '\n'.join(map(str, self.total_order)) + '\n' +\
-    'Total price: ' + f'{sum(map(int, self.total_price))}.00' + " UAH" + '\n'
+    'Total price: ' + f'{self.total()}.00' + " UAH" + '\n'
                     
         
 if __name__ == '__main__':
@@ -68,4 +70,3 @@ if __name__ == '__main__':
     order_0002.add_product(product_2)
     order_0002.add_product(product_1)
     print(order_0002)    
-
