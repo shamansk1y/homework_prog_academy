@@ -1,0 +1,92 @@
+# Домашнє завдання:
+# 1. Створіть клас, що описує людину (створіть метод, що виводить інформацію про людину).
+# 2) На його основі створіть клас Студент (перевизначте метод виведення інформації).
+# 3) Створіть клас Група, який містить масив із 10 об'єктів класу Студент.
+# Реалізуйте методи додавання, видалення студента та метод пошуку студента за прізвищем.
+# Визначте для Групи метод str() для повернення списку студентів у вигляді рядка.
+
+class Human():
+    def __init__(self, surname: str, name: str, person_id: int):
+        self.surname = surname
+        self.name = name
+        self.person_id = person_id
+    
+    def human_info_lst(self):
+        return [self.surname, self.name, self.person_id]
+    
+    def __str__(self):
+        return f'{self.surname} {self.name} {self.person_id}'
+
+
+class Student(Human):
+    def __init__(self, surname: str, name: str, person_id: int, group: str):
+        super().__init__(surname, name, person_id)
+        self.group = group
+
+    def stud_info_lst(self):
+        return [self.surname, self.name, self.person_id, self.group]    
+        
+    def __str__(self):
+        return super().__str__() + f' {self.group}'
+
+    
+class Group():
+    def __init__(self):
+        stud_001 = Student('Doe', 'John', 101, 'Python')
+        stud_002 = Student('Smith', 'Jane', 102, 'Python')
+        stud_003 = Student('Petrenko', 'Petro', 103, 'Python')
+        stud_004 = Student('Ivanov', 'Ivan', 104, 'Python')
+        stud_005 = Student('Popova', 'Maria', 105, 'Python')
+        stud_006 = Student('Armemovsky', 'Artem', 106, 'Python')
+        stud_007 = Student('Karapetyn', 'Ashot', 107, 'Python')
+        stud_008 = Student('Nevinoven', 'Rafik', 108, 'Python')
+        stud_009 = Student('Makedonskiy', 'Aleksandr', 109, 'Python')
+        stud_010 = Student('Nosurname', 'Oleksandr', 110, 'Python')
+
+        self.stud_lst = [stud_001, stud_002, stud_003, stud_004, stud_005, stud_006, stud_007, stud_008, stud_009, stud_010]            
+         
+    # add new student    
+    def stud_add(self, stud: Student):
+        self.stud = stud
+        if len(self.stud_lst) < 10:
+            for elem in self.stud_lst:
+                if self.stud.stud_info_lst()[0] == elem.stud_info_lst()[0]:
+                    return f"The student is already on the list"
+            
+            self.stud_lst.append(stud)
+            return f"New student {stud} successfully added to the list"
+        else:
+            return f"The student cannot be added. The list is full"
+
+    # search student     
+    def search_stud(self, surname: str):
+        self.surname = surname
+        for elem in self.stud_lst:
+            if elem.stud_info_lst()[0] == self.surname:
+                return f"Student whith surname {elem.stud_info_lst()[0]} - found: {' '.join(map(str,elem.stud_info_lst()))}"
+        else:
+            return f"Student whith surname {surname} not found in the list"
+            
+    # del student
+    def stud_del(self, stud: Student):
+        self.stud = stud
+        for elem in self.stud_lst:
+            if self.stud.stud_info_lst()[0] == elem.stud_info_lst()[0]:                              
+                self.stud_lst.remove(elem)
+                return f"Student {' '.join(map(str,elem.stud_info_lst()))} successfully removed from the group"
+        else:
+            return f"Student whith {stud} not found in the list"
+        
+    def __str__(self):
+        return f"{'Students list:'}\n{'_'*45}\n" + '\n'.join(map(str, self.stud_lst)) +'\n'   
+        
+        
+if __name__ == '__main__':
+    stud_010 = Student('Nosurname', 'Oleksandr', 110, 'Python')
+    stud_new = Student('Shevchenko', 'Sergiy', 777, 'Python')
+    group = Group()
+    print(group.stud_add(stud_010))
+    print(group.search_stud('Nosurname'))
+    print(group.stud_del(stud_010))
+    print(group.stud_add(stud_new))
+    print(group)
