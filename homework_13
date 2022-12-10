@@ -1,0 +1,176 @@
+# Домашнє завдання:
+# 1. Модифікуйте Перше домашнє завдання так, щоб при спробі встановити від'ємну або нульову вартість товару
+# викликалася виняткова ситуація (тип виняткової ситуації треба самостійно реалізувати).
+
+class InvalidProductPriceError(Exception):
+    """Raised when a price has invalid value"""
+    
+class Product():
+    def __init__(self, product_name, price, description, vendor_code, size, brand, producing_country):
+        self.product_name = product_name
+        self.price = price
+        self.description = description
+        self.vendor_code = vendor_code
+        self.size = size
+        self.brand = brand
+        self.producing_country = producing_country
+        if price <= 0:
+            raise InvalidProductPriceError("price can't be <= 0")
+    def __str__(self):
+        return f'{self.brand} {self.product_name} - {self.vendor_code} === {self.price}.00 UAH'
+
+    
+class Buyer():
+    def __init__(self, surname, name, phone, email):
+        self.surname = surname
+        self.name = name
+        self.phone = phone
+        self.email = email
+        
+    def __str__(self):
+        return f'{self.surname} {self.name[0]}. {self.phone} {self.email}'
+
+    
+class Order():
+    def __init__(self, order_numder, buyer):
+        self.order_numder = order_numder
+        self.buyer = buyer
+        self.total_order = []
+    
+    def add_product(self, product):
+        self.total_order.append(product)
+
+    def total(self):
+        return sum(i.price for i in self.total_order)  
+    
+        print(product.price)
+    def __str__(self):
+        return f"{self.order_numder}\nby {self.buyer}\n{'-' * 50}\n" + '\n'.join(map(str, self.total_order)) + '\n' +\
+    'Total price: ' + f'{self.total()}.00' + " UAH" + '\n'
+                    
+        
+if __name__ == '__main__':
+    product_1 = Product('Top Flex', -1, "Futsal shoes", "TOPS2022IN", "43", "Joma", "Spain")
+    product_2 = Product('Tornado', 1450, "Official match ball", "2214008", "4", "Select", "Denmark")
+    product_3 = Product('T-shirt Ucrania UAF', 1350, "Official match t-shirt", "AT102404A709", "Medium", "Joma", "Spain")
+    product_4 = Product('Estadio III', 650, "Training bag", "400234.100", "ONESIZE", "Joma", "Spain")
+    
+    buyer_1 = Buyer("John", "Doe", "+38-096-111-11-11", "john_doe@gmail.com")
+    buyer_2 = Buyer("Jane", "Doe", "+38-096-222-22-22", "jane_doe@gmail.com")
+            
+    order_0001 = Order("Order №0001", buyer_1)
+    order_0001.add_product(product_1)
+    order_0001.add_product(product_2)
+    order_0001.add_product(product_3)
+    print(order_0001)
+    
+    order_0002 = Order("Order №0002", buyer_2)
+    order_0002.add_product(product_4)
+    order_0002.add_product(product_2)
+    order_0002.add_product(product_1)
+    print(order_0002)    
+    
+    
+    
+    
+    # 2. Модифікуйте Друге домашнє завдання так, щоб при спробі додавання до групи більше 10-ти студентів,
+# викликалася виняткова ситуація (тип виняткової ситуації треба самостійно реалізувати).
+# Подію додавання нового студента до групи необхідно фіксувати у лог-файлі.
+
+import logging
+# create logger
+logger = logging.getLogger('homework_13')
+logger.setLevel(logging.INFO)
+
+# create file handler and set level to info
+ch = logging.FileHandler("homework_13.log")
+ch.setLevel(level=logging.INFO)
+
+# create formatter
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+# add formatter to ch
+ch.setFormatter(formatter)
+# add ch to logger
+logger.addHandler(ch)
+# 'application' code
+
+logger.info('A new student has been added to the list')
+
+
+
+class InvalidGroupListError(Exception):
+    """Raised when a self.__students list is full"""
+
+class Human():
+    def __init__(self, surname, name, person_id):
+        self.surname = surname
+        self.name = name
+        self.person_id = person_id
+    
+    def __str__(self):
+        return f'{self.surname} {self.name} {self.person_id}'
+
+
+class Student(Human):
+    def __init__(self, surname, name, person_id, programming_language):
+        super().__init__(surname, name, person_id)
+        self.programming_language = programming_language
+
+    def __str__(self):
+        return super().__str__() + f' {self.programming_language}'
+
+    
+class Group():
+    def __init__(self, title, max_students=10):
+        self.title = title
+        self.__students = []
+        self.max_students = max_students
+
+    # add new student    
+    def stud_add(self, student):
+        self.student = student
+        if student not in self.__students and len(self.__students) < self.max_students:
+            self.__students.append(student)
+            logger.info('A new student has been added to the list')
+        else:
+            raise InvalidGroupListError("Can't add new studend, list is full")
+            
+    # search student     
+    def search_stud(self, surname):
+        self.res_search = []
+        for student in self.__students:
+            if student.surname == surname:
+                self.res_search.append(student)
+        return '\n'.join(map(str, self.res_search))
+    
+    # del student
+    def stud_del(self, surname):
+        
+        for student in self.__students:
+            if student.surname == surname:
+                self.__students.remove(student)
+            
+        
+    def __str__(self):
+        return f"Students {self.title} list:\n{'_'*45}\n" + '\n'.join(map(str, self.__students)) +'\n'   
+        
+        
+if __name__ == '__main__':
+    group_1 = Group("08-12-2022")
+    group_1.stud_add(Student('Doe', 'John', 101, "Python"))
+    group_1.stud_add(Student('Smith', 'Jane', 102, "Python"))
+    group_1.stud_add(Student('Petrenko', 'Petro', 103, "Python"))
+    group_1.stud_add(Student('Ivanov', 'Ivan', 104, "Python"))
+    group_1.stud_add(Student('Popova', 'Maria', 105, "Python"))
+    group_1.stud_add(Student('Armemovsky', 'Artem', 106, "Python"))
+    group_1.stud_add(Student('Karapetyn', 'Ashot', 107, "Python"))
+    group_1.stud_add(Student('Nevinoven', 'Rafik', 108, "Python"))
+    group_1.stud_add(Student('Makedonskiy', 'Aleksandr', 109, "Python"))
+    group_1.stud_add(Student('Nosurname', 'Oleksandr', 110, "Python"))
+    
+    print(group_1.search_stud('Nosurname'))
+    group_1.stud_del('Nosurname')
+    group_1.stud_add(Student('Shevchenko', 'Sergiy', 777, "Python"))
+    group_1.stud_add(Student('Test', 'Test', 555, "Test"))
+    print(group_1)
