@@ -32,7 +32,6 @@ class Group():
 
     # add new student    
     def stud_add(self, student):
-        self.student = student
         if student not in self.__students and len(self.__students) < self.max_students:
             self.__students.append(student)
             
@@ -42,11 +41,10 @@ class Group():
         for student in self.__students:
             if student.surname == surname:
                 self.res_search.append(student)
-        return '\n'.join(map(str, self.res_search))
+        return self.res_search
     
     # del student
     def stud_del(self, surname):
-        
         for student in self.__students:
             if student.surname == surname:
                 self.__students.remove(student)
