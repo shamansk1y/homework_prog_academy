@@ -1,7 +1,7 @@
 import logging
 import module_ex_dublicate
 import module_ex_group_limit
-from module_student_stud import Student
+import module_student_stud
 
 logger = logging.getLogger('homework_13')
 logger.setLevel(logging.INFO)
@@ -30,7 +30,7 @@ class Group():
         self.max_students = max_students
 
     # add new student
-    def stud_add(self, student: Student):
+    def stud_add(self, student: module_student_stud.Student):
         """
         Function add a new student to the group
         :param student: use person from class Student
