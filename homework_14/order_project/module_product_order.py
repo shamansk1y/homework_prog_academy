@@ -11,9 +11,10 @@ class Product():
         :param brand: brand name
         :param producing_country: producing country of product
         """
-        self.price = price
+
         if price <= 0:
-            raise module_ex_price_order.InvalidProductPriceError(self.price)
+            raise module_ex_price_order.InvalidProductPriceError(price)
+        self.price = price
         self.product_name = product_name
         self.description = description
         self.vendor_code = vendor_code
