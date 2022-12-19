@@ -1,0 +1,74 @@
+# 1. Створіть клас «Прямокутник», у якого є два поля (ширина і висота). Реалізуйте метод порівняння прямокутників за площею.
+# Також реалізуйте методи складання прямокутників (площа сумарного прямокутника повинна дорівнювати сумі площ прямокутників, які ви складаєте).
+# Реалізуйте методи множення прямокутника на число n (це має збільшити площу базового прямокутника в n разів).
+
+class Rectangle:
+
+    def __init__(self, a: int, b: int):
+        """
+        Create rectangle
+        :param a: width
+        :param b: height
+        """
+        self.a = a
+        self.b = b
+
+    def area_rectangle(self) -> int:
+        return self.a * self.b
+
+    def __gt__(self, other):
+        return self.area_rectangle() > other.area_rectangle()
+
+    def __lt__(self, other):
+        return self.area_rectangle() < other.area_rectangle()
+
+    def __ge__(self, other):
+        return self.area_rectangle() >= other.area_rectangle()
+
+    def __le__(self, other):
+        return self.area_rectangle() <= other.area_rectangle()
+
+    def __add__(self, other):
+        if isinstance(other, Rectangle):
+            return self.area_rectangle() + other.area_rectangle()
+        if isinstance(other, int):
+            return self.area_rectangle() + other
+        return NotImplemented
+
+    def __radd__(self, other):
+        if isinstance(other, (int, float)):
+            return self.area_rectangle() + other
+        return NotImplemented
+
+    def __mul__(self, other):
+        if isinstance(other, Rectangle):
+            return self.area_rectangle() * other.area_rectangle()
+        if isinstance(other, int):
+            return self.area_rectangle() * other
+        return NotImplemented
+
+    def __rmul__(self, other):
+        if isinstance(other, (int, float)):
+            return self.area_rectangle() * other
+        return NotImplemented
+
+    def __str__(self):
+        return f'{self.a} x {self.b}'
+
+x = Rectangle(1, 2)
+y = Rectangle(3, 4)
+
+print(x)
+print(y)
+print(x > y)
+print(x < y)
+print(x >= y)
+print(x <= y)
+print(x + y)
+print(x * 5)
+print(5 * y)
+
+
+
+# 2. Створіть клас «Правильна дроба» та реалізуйте методи порівняння, додавання, віднімання та множення для екземплярів цього класу.
+
