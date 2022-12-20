@@ -163,7 +163,6 @@ class Rational:
             return f'{sign}{a // b} {a % b} / {b}'
         return f'{sign}{a} / {b}'
 
-
 x1 = Rational(1, 4)
 x2 = Rational(-1)
 print(x1)
