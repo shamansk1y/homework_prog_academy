@@ -1,24 +1,23 @@
-import module_product_order
-import module_buyer_order
-import module_order_order
+import module_student_stud
+import module_group_stud
 
 if __name__ == '__main__':
-    product_1 = module_product_order.Product('Top Flex', 1550, "Futsal shoes", "TOPS2022IN", "43", "Joma", "Spain")
-    product_2 = module_product_order.Product('Tornado', 1450, "Official match ball", "2214008", "4", "Select", "Denmark")
-    product_3 = module_product_order.Product('T-shirt Ucrania UAF', 1350, "Official match t-shirt", "AT102404A709", "Medium", "Joma", "Spain")
-    product_4 = module_product_order.Product('Estadio III', 650, "Training bag", "400234.100", "ONESIZE", "Joma", "Spain")
+    group_1 = module_group_stud.Group("08-12-2022")
+    group_1.stud_add(module_student_stud.Student('Doe', 'John', 101, "Python"))
+    group_1.stud_add(module_student_stud.Student('Smith', 'Jane', 102, "Python"))
+    group_1.stud_add(module_student_stud.Student('Petrenko', 'Petro', 103, "Python"))
+    group_1.stud_add(module_student_stud.Student('Ivanov', 'Ivan', 104, "Python"))
+    group_1.stud_add(module_student_stud.Student('Popova', 'Maria', 105, "Python"))
+    group_1.stud_add(module_student_stud.Student('Armemovsky', 'Artem', 106, "Python"))
+    group_1.stud_add(module_student_stud.Student('Karapetyn', 'Ashot', 107, "Python"))
+    group_1.stud_add(module_student_stud.Student('Nevinoven', 'Rafik', 108, "Python"))
+    group_1.stud_add(module_student_stud.Student('Makedonskiy', 'Aleksandr', 109, "Python"))
+    group_1.stud_add(module_student_stud.Student('Nosurname', 'Oleksandr', 110, "Python"))
+    # print(group_1.search_stud('Nosurname'))
+    # group_1.stud_del('Nosurname')
+    # group_1.stud_add(module_student_stud.Student('Shevchenko', 'Sergiy', 777, "Python"))
+    # group_1.stud_add(module_student_stud.Student('Test', 'Test', 555, "Test"))
+    # print(group_1)
 
-    buyer_1 = module_buyer_order.Buyer("John", "Doe", "+38-096-111-11-11", "john_doe@gmail.com")
-    buyer_2 = module_buyer_order.Buyer("Jane", "Doe", "+38-096-222-22-22", "jane_doe@gmail.com")
-
-    order_0001 = module_order_order.Order("Order №0001", buyer_1)
-    order_0001.add_product(product_1)
-    order_0001.add_product(product_2)
-    order_0001.add_product(product_3)
-    print(order_0001)
-
-    order_0002 = module_order_order.Order("Order №0002", buyer_2)
-    order_0002.add_product(product_4)
-    order_0002.add_product(product_2)
-    order_0002.add_product(product_1)
-    print(order_0002)
+    for student in group_1:
+        print(student)
