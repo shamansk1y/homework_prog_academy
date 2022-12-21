@@ -1,8 +1,8 @@
 import logging
 import module_ex_dublicate
 import module_ex_group_limit
-import module_student_stud
-
+from module_student_stud import Student
+import module_group_iter
 logger = logging.getLogger('homework_13')
 logger.setLevel(logging.INFO)
 
@@ -13,6 +13,8 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 logger.info('A new student has been added to the list')
+
+
 
 class Group():
     def __init__(self, title, max_students=10):
@@ -30,7 +32,7 @@ class Group():
         self.max_students = max_students
 
     # add new student
-    def stud_add(self, student: module_student_stud.Student):
+    def stud_add(self, student: Student):
         """
         Function add a new student to the group
         :param student: use person from class Student
@@ -66,6 +68,9 @@ class Group():
         for student in self.__students:
             if student.surname == surname:
                 self.__students.remove(student)
+
+    def __iter__(self):
+        return module_group_iter.GroupIter(self.__students)
 
     def __str__(self):
         return f"Students {self.title} list:\n{'_' * 45}\n" + '\n'.join(map(str, self.__students)) + '\n'

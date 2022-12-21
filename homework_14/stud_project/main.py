@@ -13,8 +13,11 @@ if __name__ == '__main__':
     group_1.stud_add(module_student_stud.Student('Nevinoven', 'Rafik', 108, "Python"))
     group_1.stud_add(module_student_stud.Student('Makedonskiy', 'Aleksandr', 109, "Python"))
     group_1.stud_add(module_student_stud.Student('Nosurname', 'Oleksandr', 110, "Python"))
-    print(group_1.search_stud('Nosurname'))
-    group_1.stud_del('Nosurname')
-    group_1.stud_add(module_student_stud.Student('Shevchenko', 'Sergiy', 777, "Python"))
+    # print(group_1.search_stud('Nosurname'))
+    # group_1.stud_del('Nosurname')
+    # group_1.stud_add(module_student_stud.Student('Shevchenko', 'Sergiy', 777, "Python"))
     # group_1.stud_add(module_student_stud.Student('Test', 'Test', 555, "Test"))
-    print(group_1)
+    # print(group_1)
+
+    for student in group_1:
+        print(student)
