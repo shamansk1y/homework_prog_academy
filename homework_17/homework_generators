@@ -1,0 +1,92 @@
+# 1. Реалізуйте генераторну функцію, яка повертатиме по одному члену геометричної прогресії із зазначеним множником.
+# Генератор повинен зупинити свою роботу або після досягнення зазначеного елементу, або при передачі команди на завершення.
+
+def g_prog(start: int = 1, mult: int = 2, stop: int = 64):
+    """
+    Generator function with specified multiplier
+    :param start: first number in geometric progression
+    :param mult: multiplier
+    :param stop: last number in geometric progression
+    :return:
+    """
+    temp = start
+    while temp * mult <= stop:
+        yield temp * mult
+        temp *= mult
+x = g_prog(2)
+
+limit_close = 33
+for i in x:
+    if i < limit_close:
+        print(i)
+    else:
+        x.close()
+        
+ 
+ 
+ # 2. Реалізуйте свій аналог генераторної функції range().
+
+def my_gen(start: int = 1, stop: int = 1, step: int = 1):
+    """
+    Range function
+    :param start: first number in range
+    :param stop: last number in range
+    :param step: step in range
+    :return: 
+    """
+    temp = start
+    while temp <= stop:
+        yield temp
+        temp += step
+x2 = my_gen(1,10)
+print(x2)
+print(next(x2))
+print(next(x2))
+print(next(x2))
+print(next(x2))
+
+
+
+# 3. Напишіть функцію-генератор, яка повертатиме прості числа. Верхня межа діапазону повинна бути задана параметром цієї функції.
+
+import sympy
+
+def simple_gen(stop: int, start: int = 1, step: int = 1):
+    """
+    Function return simple numbers
+    :param stop: limit, last numbers
+    :param start: first numbers, default numbers = 1
+    :param step: step, default = 1
+    :return:
+    """
+    temp = start
+    while temp <= stop:
+        if sympy.isprime(temp):
+            yield temp
+        temp += step
+x3 = simple_gen(6)
+print(x3)
+print(next(x3))
+print(next(x3))
+print(next(x3))
+
+
+# 4. Напишіть генераторний вираз для заповнення списку. Список повинен бути заповнений кубами чисел від 2 до вказаної вами величини.
+
+def cubes_gen(stop: int, start: int = 2, step: int = 1):
+    """
+    Cubes function generator
+    :param stop: last number in list
+    :param start: first number, default = 2
+    :param step: step, default = 1
+    :return: 
+    """
+    temp = start
+    while temp <= stop:
+        yield temp ** 3
+        temp += step
+x4 = cubes_gen(5)
+print(x4)
+print(next(x4))
+print(next(x4))
+print(next(x4))
