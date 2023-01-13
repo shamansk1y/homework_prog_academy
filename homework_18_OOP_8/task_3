@@ -1,0 +1,30 @@
+# 3. Напишіть функцію, яка застосує до списку чисел довільну функцію користувача і поверне суми елементів отриманого списку.
+
+import random
+
+def sum_el(random_lst: list):
+    result = 0
+    for num in random_lst:
+        if (check_function(num) == True):
+            result += num
+    return result
+
+def rand_list_num():
+    lst = []
+    for _ in range(10):
+        lst.append(random.randint(1,20))
+    return lst
+
+def check_function(number: int):
+    if number % 4 == 0:
+        return True
+    else:
+        return False
+    
+random_lst = rand_list_num()   
+result = sum_el(random_lst)
+
+if __name__ == "__main__":
+    print(random_lst)
+    print(result)
+
