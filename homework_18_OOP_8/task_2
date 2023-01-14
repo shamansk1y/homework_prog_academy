@@ -1,0 +1,35 @@
+# 2. Використовуючи замикання, реалізуйте такий прийом програмування як Мемоізація - https://en.wikipedia.org/wiki/Memoization .
+# Використовуйте отриманий механізм для прискорення функції рекурсивного обчислення n - го члена ряду Фібоначчі.
+# Порівняйте швидкість виконання із просто рекурсивним підходом.
+
+import timeit
+
+t_1 = """
+def fibonacci(n):
+    if (n <= 1):
+        return n
+    else:
+        return (fibonacci(n-1) + fibonacci(n-2))
+fibonacci(25)
+"""
+
+t_2 = """
+def mem_fibo():
+    temp = [0, 1]
+    
+    def get_next(n):
+        if n < len(temp):
+            return temp[n]      
+        curr, next = temp[-2], temp[-1]
+        indx = len(temp)
+        while indx <= n:
+            curr, next = next, curr + next
+            temp.append(next)
+            indx += 1
+        return next
+    return get_next
+f = mem_fibo()
+f(30)
+"""
+print(timeit.timeit(t_1, number=20))
+print(timeit.timeit(t_2, number=20))
