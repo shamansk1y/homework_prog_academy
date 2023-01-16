@@ -1,0 +1,67 @@
+# 1) Создайте декоратор, который зарегистрирует декорируемый класс в списке классов.
+
+cl_reg = []
+
+def decorator(cls):
+    cl_reg.append(cls)
+    return cls
+
+@decorator
+class My_class():
+    pass
+m_cl = My_class()
+print(cl_reg)
+
+
+
+
+# 2) Создайте декоратор класса с параметром. Параметром должна быть строка, которая должна дописываться
+# (слева) к результату работы метода __str__.
+
+
+class DecoratorClass():
+    def __init__(self, text: str):
+        self.text = text
+
+    def __call__(self, cls):
+        orig_str = cls.__str__
+        def new_str(self):
+            return f"{self.decorator_text} {orig_str(self)}"
+        cls.__str__ = new_str
+        cls.decorator_text = self.text
+        return cls
+    
+@DecoratorClass("New Box:")
+class Box:
+    def __init__(self, x, y, z):
+        self.x = x
+        self.y = y
+        self.z = z
+    
+    def __str__(self):
+        return f"{self.x} * {self.y} * {self.z}"
+
+a = Box(1, 2, 3)
+print(a)
+
+
+
+
+# 3) Для класса Box напишите статический метод, который будет подсчитывать суммарный объем двух ящиков, которые будут его параметрами.
+
+class Box:
+    def __init__(self, x, y, z):
+        self.x = x
+        self.y = y
+        self.z = z
+        
+    def volume(self):
+        return self.x * self.y * self.z
+    
+    @staticmethod
+    def sum_vol(box_1, box_2):
+        return box_1.volume() + box_2.volume()
+    
+b1 = Box(2, 2, 2)
+b2 = Box(3, 3, 3)
+print(Box.sum_vol(b1, b2))
