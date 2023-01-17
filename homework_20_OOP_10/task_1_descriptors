@@ -1,0 +1,29 @@
+# 1) Создайте дескриптор, который будет делать поля класса управляемые им доступными только для чтения.
+
+class Box:
+    def __init__(self, x, y, z):
+        self.__x = x
+        self.__y = y
+        self.__z = z
+        
+    @property
+    def x(self):
+        return self.__x
+
+    @property
+    def y(self):
+        return self.__y
+
+    @property
+    def z(self):
+        return self.__z
+
+    
+box_1 = Box(1, 2, 3)
+print(box_1.x)
+box_1.z = 4
+
+
+
+
+
