@@ -74,3 +74,23 @@ print(box_1)
 
 
 
+# 3) Реализуйте свойство класса, которое обладает следующим функционалом: при установки значения этого свойства в файл
+# с заранее определенным названием должно сохранятся время (когда устанавливали значение свойства) и установленное значение.
+import datetime
+
+class MyClass:
+    
+    def __init__(self, name, surname):
+        self._name = name
+        self._surname = surname
+        
+    def __setattr__(self, attr_name, attr_value):
+        if attr_name in ("_name", "_surname"):
+            self._text_file = "text_file.txt"
+            time_now = datetime.datetime.now()
+            with open(self._text_file, "a") as file:
+                file.write(f"{time_now}: {attr_value}\n")
+        self.__dict__[attr_name] = attr_value
+        
+m = MyClass("Name", "Surname")
+print(m)
