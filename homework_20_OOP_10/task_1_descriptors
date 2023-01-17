@@ -27,3 +27,50 @@ box_1.z = 4
 
 
 
+# 2) Реализуйте функционал, который будет запрещать установку полей класса любыми значениями, кроме целых чисел.
+# Т.е., если тому или иному полю попытаться присвоить, например, строку, то должно быть возбужденно исключение.
+
+class Box:
+    def __init__(self, e, d, c):
+        self.__e = e
+        self.__d = d
+        self.__c = c
+                
+    e = property()
+    d = property()
+    c = property()
+
+    @e.setter
+    def e(self, value):
+        if not isinstance(value, int):
+            raise TypeError
+        else:
+            self.__e = value       
+
+    @d.setter
+    def d(self, value):
+        if not isinstance(value, int):
+            raise TypeError
+        else:
+            self.__d = value
+            
+    @c.setter
+    def c(self,value):
+        if not isinstance(value, int):
+            raise TypeError
+        else:
+            self.__c = value
+
+    def __str__(self):
+        return f"{self.__e} * {self.__d} * {self.__c}"
+    
+box_1 = Box(1, 2, 3)
+print(box_1)
+box_1.c = 4
+print(box_1)
+box_1.c = "a"
+print(box_1)
+
+
+
+
