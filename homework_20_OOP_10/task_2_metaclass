@@ -1,0 +1,16 @@
+# Домашнее задание
+# 1) Реализуйте метакласс, который обладает следующим функционалом: при его использовании в файл с заранее определенным
+# названием нужно сохранить имя класса и список его полей.
+
+class My_Meta(type):
+    def __init__(cls, classname, supers, classdict):
+        with open('class_attr.txt', 'a') as file:
+            file.write(f'{classname}:\n{[item for item in classdict]}\n')
+
+            
+class MyClass(metaclass=My_Meta):
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        
+m = MyClass("Tomas", 5)
